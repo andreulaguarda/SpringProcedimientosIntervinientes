@@ -56,7 +56,15 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
         Procedimiento procedimiento = modelMapper.map(procedimientoDTO, Procedimiento.class);
 
-        return modelMapper.map(procedimientoRepository.save(procedimiento), ProcedimientoDTO.class);
+        procedimiento.setDatosAuditoria(procedimientoDTO.getDatosAutoria());
+
+        ProcedimientoDTO savedProcedimientoDTO = modelMapper.map(procedimientoRepository.save(procedimiento), ProcedimientoDTO.class);
+
+        List<IntervinienteDTO> intervinientes = intervinienteClientRest.getIntervinientesByIdProcedimiento(procedimiento.getId());
+
+        savedProcedimientoDTO.setIntervinientes(intervinientes);
+
+        return savedProcedimientoDTO;
 
     }
 

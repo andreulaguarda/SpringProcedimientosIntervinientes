@@ -24,20 +24,16 @@ public class ProcedimientoController {
     @PostMapping
     public ResponseEntity<ProcedimientoDTO> createProcedimiento(@RequestBody ProcedimientoDTO procedimientoDTO) {
 
-        ProcedimientoDTO savedProcedimientoDTO = procedimientoService.createProcedimiento(procedimientoDTO);
+        ProcedimientoDTO savedProcedimientoDTO = procedimientoService.save(procedimientoDTO);
 
         return new ResponseEntity<>(savedProcedimientoDTO, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Procedimiento>> getAllProcedimientos() {
-        List<Procedimiento> procedimientos = procedimientoService.getAllProcedimientos();
+    public ResponseEntity<List<ProcedimientoDTO>> getAllProcedimientos() {
+        List<ProcedimientoDTO> procedimientos = procedimientoService.findAll();
         return new ResponseEntity<>(procedimientos, HttpStatus.OK);
     }
 
 
-    @GetMapping("/testfeign/{id}")
-    public Interviniente getInterviniente(@PathVariable Long id) {
-        return IntervinienteClientRest.getInterviniente(id);
-    }
 }
