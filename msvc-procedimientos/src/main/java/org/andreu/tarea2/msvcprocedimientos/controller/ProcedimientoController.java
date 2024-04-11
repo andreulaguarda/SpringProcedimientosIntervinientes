@@ -1,8 +1,6 @@
 package org.andreu.tarea2.msvcprocedimientos.controller;
 
-import org.andreu.tarea2.msvcprocedimientos.client.IntervinienteClientRest;
 import org.andreu.tarea2.msvcprocedimientos.dto.ProcedimientoDTO;
-import org.andreu.tarea2.msvcprocedimientos.model.entity.Procedimiento;
 import org.andreu.tarea2.msvcprocedimientos.service.ProcedimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

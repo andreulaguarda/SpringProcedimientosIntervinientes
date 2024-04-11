@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 
-import java.util.List;
-
 @Entity
 @Table(name = "procedimientos")
 @Data

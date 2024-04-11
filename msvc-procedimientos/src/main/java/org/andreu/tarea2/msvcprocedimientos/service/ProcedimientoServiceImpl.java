@@ -29,7 +29,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
     @Transactional(readOnly = true)
     public List<ProcedimientoDTO> findAll() {
 
-        List<Procedimiento> procedimientos = (List<Procedimiento>) procedimientoRepository.findAll();
+        List<Procedimiento> procedimientos = procedimientoRepository.findAll();
 
         return procedimientos.stream().map(procedimiento -> modelMapper.map(procedimiento, ProcedimientoDTO.class)).toList();
 

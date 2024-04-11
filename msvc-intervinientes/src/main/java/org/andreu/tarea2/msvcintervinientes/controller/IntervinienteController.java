@@ -1,7 +1,6 @@
 package org.andreu.tarea2.msvcintervinientes.controller;
 
 import org.andreu.tarea2.msvcintervinientes.dto.IntervinienteDTO;
-import org.andreu.tarea2.msvcintervinientes.model.entity.Interviniente;
 import org.andreu.tarea2.msvcintervinientes.service.IntervinienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

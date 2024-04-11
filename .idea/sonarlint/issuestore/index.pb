@@ -162,10 +162,6 @@ Q.idea/sonarlint/securityhotspotstore/d/d/dd9bfa5a27e903325ae68ac5a975a6a60ed083
 ^msvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/model/DatosAutoria.java,1\3\13570143eab9cc856d7e10ce9d9bdeb5e810e186
 ñ
 fmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/model/entity/Procedimiento.java,b\5\b56063163e9bf207a827471a7c2119ea42e91b93
-ò
-hmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/model/entity/IdInterviniente.java,2\c\2c801d9aec4492e91883032a1d0cb72b9a15d8f1
-è
-_msvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/model/Interviniente.java,0\f\0f1c70cd8099fa1a6ec0ebac5242305a35c1c88f
 í
 bmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/model/TipoIntervencion.java,f\5\f54be8e8f2097d67506e573513d6b9f283fe498e
 ê

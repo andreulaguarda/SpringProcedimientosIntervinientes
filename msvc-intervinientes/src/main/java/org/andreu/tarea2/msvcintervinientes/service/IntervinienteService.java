@@ -1,8 +1,6 @@
 package org.andreu.tarea2.msvcintervinientes.service;
 
 import org.andreu.tarea2.msvcintervinientes.dto.IntervinienteDTO;
-import org.andreu.tarea2.msvcintervinientes.model.entity.Interviniente;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
