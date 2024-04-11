@@ -2,6 +2,7 @@ package org.andreu.tarea2.msvcprocedimientos.service;
 
 import org.andreu.tarea2.msvcprocedimientos.dto.ProcedimientoDTO;
 import org.andreu.tarea2.msvcprocedimientos.model.entity.Procedimiento;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +15,7 @@ public interface ProcedimientoService {
 
     ProcedimientoDTO save(ProcedimientoDTO procedimientoDTO);
 
-    ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO);
-
     void deleteById(Long id);
 
+    void deleteRelatedIntervinientes(Long id);
 }

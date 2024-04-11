@@ -2,10 +2,7 @@ package org.andreu.tarea2.msvcprocedimientos.client;
 
 import org.andreu.tarea2.msvcprocedimientos.dto.IntervinienteDTO;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +17,9 @@ public interface IntervinienteClientRest {
 
     @PostMapping
     IntervinienteDTO saveInterviniente(@RequestBody IntervinienteDTO intervinienteDTO);
+
+    @DeleteMapping("/{id}")
+    void deleteInterviniente(@PathVariable Long id);
 
 
 }

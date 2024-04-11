@@ -3,7 +3,6 @@ package org.andreu.tarea2.msvcprocedimientos.service;
 import org.andreu.tarea2.msvcprocedimientos.client.IntervinienteClientRest;
 import org.andreu.tarea2.msvcprocedimientos.dto.IntervinienteDTO;
 import org.andreu.tarea2.msvcprocedimientos.dto.ProcedimientoDTO;
-import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 import org.andreu.tarea2.msvcprocedimientos.model.entity.Procedimiento;
 import org.andreu.tarea2.msvcprocedimientos.repository.ProcedimientoRepository;
 import org.modelmapper.ModelMapper;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,22 +41,37 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
         Optional<Procedimiento> procedimiento = procedimientoRepository.findById(id);
 
-        return procedimiento.map(value -> modelMapper.map(value, ProcedimientoDTO.class));
+        if (procedimiento.isPresent()) {
+            ProcedimientoDTO procedimientoDTO = modelMapper.map(procedimiento.get(), ProcedimientoDTO.class);
+
+            List<IntervinienteDTO> intervinientes = intervinienteClientRest.getIntervinientesByIdProcedimiento(procedimiento.get().getId());
+
+            procedimientoDTO.setIntervinientes(intervinientes);
+
+            return Optional.of(procedimientoDTO);
+        }
+
+        return Optional.empty();
 
     }
 
     @Override
+    @Transactional
     public ProcedimientoDTO save(ProcedimientoDTO procedimientoDTO) {
-
-        for (IntervinienteDTO intervinienteDTO : procedimientoDTO.getIntervinientes()) {
-            intervinienteClientRest.saveInterviniente(intervinienteDTO);
-        }
 
         Procedimiento procedimiento = modelMapper.map(procedimientoDTO, Procedimiento.class);
 
         procedimiento.setDatosAuditoria(procedimientoDTO.getDatosAutoria());
 
         ProcedimientoDTO savedProcedimientoDTO = modelMapper.map(procedimientoRepository.save(procedimiento), ProcedimientoDTO.class);
+
+        for (IntervinienteDTO intervinienteDTO : procedimientoDTO.getIntervinientes()) {
+
+            intervinienteDTO.setIdProcedimiento(savedProcedimientoDTO.getId());
+
+            intervinienteClientRest.saveInterviniente(intervinienteDTO);
+
+        }
 
         List<IntervinienteDTO> intervinientes = intervinienteClientRest.getIntervinientesByIdProcedimiento(procedimiento.getId());
 
@@ -68,15 +81,24 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
     }
 
-    @Override
-    public ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO) {
-        return null;
-    }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
 
+        procedimientoRepository.deleteById(id);
+
     }
 
+    @Override
+    @Transactional
+    public void deleteRelatedIntervinientes(Long id) {
+
+        List<IntervinienteDTO> intervinientes = intervinienteClientRest.getIntervinientesByIdProcedimiento(id);
+
+        for (IntervinienteDTO intervinienteDTO : intervinientes) {
+            intervinienteClientRest.deleteInterviniente(intervinienteDTO.getId());
+        }
+    }
 
 }

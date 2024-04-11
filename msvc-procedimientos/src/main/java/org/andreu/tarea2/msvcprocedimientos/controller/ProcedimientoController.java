@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping
@@ -17,9 +18,6 @@ public class ProcedimientoController {
 
     @Autowired
     private ProcedimientoService procedimientoService;
-
-    @Autowired
-    private IntervinienteClientRest IntervinienteClientRest;
 
     @PostMapping
     public ResponseEntity<ProcedimientoDTO> createProcedimiento(@RequestBody ProcedimientoDTO procedimientoDTO) {
@@ -35,5 +33,46 @@ public class ProcedimientoController {
         return new ResponseEntity<>(procedimientos, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ProcedimientoDTO> getProcedimientoById(@PathVariable Long id) {
+
+        Optional<ProcedimientoDTO> procedimientoDTO = procedimientoService.findById(id);
+
+        if (procedimientoDTO.isPresent()) {
+            return new ResponseEntity<>(procedimientoDTO.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProcedimientoDTO> updateProcedimiento(@RequestBody ProcedimientoDTO procedimientoDTO, @PathVariable Long id) {
+
+        Optional<ProcedimientoDTO> procedimiento = procedimientoService.findById(id);
+
+        if (procedimiento.isPresent()) {
+            procedimientoDTO.setId(id);
+            procedimientoService.deleteRelatedIntervinientes(id);
+            ProcedimientoDTO updatedProcedimiento = procedimientoService.save(procedimientoDTO);
+            return new ResponseEntity<>(updatedProcedimiento, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProcedimiento(@PathVariable Long id) {
+
+        Optional<ProcedimientoDTO> procedimiento = procedimientoService.findById(id);
+
+        if (procedimiento.isPresent()) {
+            procedimientoService.deleteRelatedIntervinientes(id);
+            procedimientoService.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+    }
 
 }

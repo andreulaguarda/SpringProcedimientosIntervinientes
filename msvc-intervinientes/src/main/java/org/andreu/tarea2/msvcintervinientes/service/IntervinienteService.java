@@ -17,8 +17,6 @@ public interface IntervinienteService {
 
     IntervinienteDTO save(IntervinienteDTO intervinienteDTO);
 
-    IntervinienteDTO update(IntervinienteDTO intervinienteDTO);
-
     void deleteById(Long id);
 
 

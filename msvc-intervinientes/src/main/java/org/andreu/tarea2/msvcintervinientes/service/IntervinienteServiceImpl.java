@@ -61,15 +61,6 @@ public class IntervinienteServiceImpl implements IntervinienteService {
 
     @Override
     @Transactional
-    public IntervinienteDTO update(IntervinienteDTO intervinienteDTO) {
-
-            Interviniente interviniente = modelMapper.map(intervinienteDTO, Interviniente.class);
-
-            return modelMapper.map(intervinienteRepository.save(interviniente), IntervinienteDTO.class);
-    }
-
-    @Override
-    @Transactional
     public void deleteById(Long id) {
         intervinienteRepository.deleteById(id);
     }
