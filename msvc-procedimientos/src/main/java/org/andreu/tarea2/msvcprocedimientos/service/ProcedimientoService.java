@@ -4,17 +4,18 @@ import org.andreu.tarea2.msvcprocedimientos.dto.ProcedimientoDTO;
 import org.andreu.tarea2.msvcprocedimientos.model.entity.Procedimiento;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProcedimientoService {
 
-    ProcedimientoDTO createProcedimiento(ProcedimientoDTO procedimientoDTO);
+    List<ProcedimientoDTO> findAll();
 
-    ProcedimientoDTO getProcedimiento(Long id);
+    Optional<ProcedimientoDTO> findById(Long id);
 
-    ProcedimientoDTO updateProcedimiento(Long id, ProcedimientoDTO procedimientoDTO);
+    ProcedimientoDTO save(ProcedimientoDTO procedimientoDTO);
 
-    void deleteProcedimiento(Long id);
+    ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO);
 
-    List<Procedimiento> getAllProcedimientos();
+    void deleteById(Long id);
 
 }

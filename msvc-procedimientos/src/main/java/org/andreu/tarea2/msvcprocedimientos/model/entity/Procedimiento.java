@@ -23,7 +23,4 @@ public class Procedimiento {
     @Embedded
     private DatosAutoria datosAuditoria;
 
-    @OneToMany(mappedBy = "procedimiento")
-    private List<IdInterviniente> idsIntervinientes;
-
 }

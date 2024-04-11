@@ -32,6 +32,16 @@ public class IntervinienteServiceImpl implements IntervinienteService {
 
     @Override
     @Transactional(readOnly = true)
+    public List<IntervinienteDTO> findbyIdProcedimiento(Long idProcedimiento) {
+
+        List<Interviniente> intervinientes = intervinienteRepository.findByIdProcedimiento(idProcedimiento);
+
+        return intervinientes.stream().map(interviniente -> modelMapper.map(interviniente, IntervinienteDTO.class)).toList();
+
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Optional<IntervinienteDTO> findById(Long id) {
 
         Optional<Interviniente> interviniente = intervinienteRepository.findById(id);

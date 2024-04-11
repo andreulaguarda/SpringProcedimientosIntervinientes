@@ -1,10 +1,9 @@
 package org.andreu.tarea2.msvcprocedimientos.service;
 
 import org.andreu.tarea2.msvcprocedimientos.client.IntervinienteClientRest;
+import org.andreu.tarea2.msvcprocedimientos.dto.IntervinienteDTO;
 import org.andreu.tarea2.msvcprocedimientos.dto.ProcedimientoDTO;
 import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
-import org.andreu.tarea2.msvcprocedimientos.model.Interviniente;
-import org.andreu.tarea2.msvcprocedimientos.model.entity.IdInterviniente;
 import org.andreu.tarea2.msvcprocedimientos.model.entity.Procedimiento;
 import org.andreu.tarea2.msvcprocedimientos.repository.ProcedimientoRepository;
 import org.modelmapper.ModelMapper;
@@ -30,58 +29,44 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Procedimiento> getAllProcedimientos() {
+    public List<ProcedimientoDTO> findAll() {
 
-        return (List<Procedimiento>) procedimientoRepository.findAll();
+        List<Procedimiento> procedimientos = (List<Procedimiento>) procedimientoRepository.findAll();
+
+        return procedimientos.stream().map(procedimiento -> modelMapper.map(procedimiento, ProcedimientoDTO.class)).toList();
+
     }
 
     @Override
-    @Transactional
-    public ProcedimientoDTO createProcedimiento(ProcedimientoDTO procedimientoDTO) {
+    @Transactional(readOnly = true)
+    public Optional<ProcedimientoDTO> findById(Long id) {
 
-        DatosAutoria datosAutoria = procedimientoDTO.getDatosAutoria();
+        Optional<Procedimiento> procedimiento = procedimientoRepository.findById(id);
+
+        return procedimiento.map(value -> modelMapper.map(value, ProcedimientoDTO.class));
+
+    }
+
+    @Override
+    public ProcedimientoDTO save(ProcedimientoDTO procedimientoDTO) {
+
+        for (IntervinienteDTO intervinienteDTO : procedimientoDTO.getIntervinientes()) {
+            intervinienteClientRest.saveInterviniente(intervinienteDTO);
+        }
 
         Procedimiento procedimiento = modelMapper.map(procedimientoDTO, Procedimiento.class);
 
-        procedimiento.setDatosAuditoria(datosAutoria);
+        return modelMapper.map(procedimientoRepository.save(procedimiento), ProcedimientoDTO.class);
 
-        List<IdInterviniente> managedIdsIntervinientes = new ArrayList<>();
-
-        IdInterviniente tempIdInterviniente = new IdInterviniente();
-
-        for (Interviniente interviniente : procedimientoDTO.getIntervinientes()) {
-            Optional<Interviniente> existingInterviniente = Optional.ofNullable(intervinienteClientRest.getInterviniente(interviniente.getId()));
-            System.out.println("existingInterviniente: " + existingInterviniente);
-            if (existingInterviniente.isPresent()) {
-                tempIdInterviniente.setIntervinienteId(existingInterviniente.get().getId());
-            } else {
-                Interviniente createdInterviniente = intervinienteClientRest.saveInterviniente(interviniente);
-                tempIdInterviniente.setIntervinienteId(createdInterviniente.getId());
-            }
-            tempIdInterviniente.setProcedimiento(procedimiento);
-            managedIdsIntervinientes.add(tempIdInterviniente);
-        }
-
-        procedimiento.setIdsIntervinientes(managedIdsIntervinientes);
-        procedimientoRepository.save(procedimiento);
-
-        return procedimientoDTO;
     }
 
     @Override
-    public ProcedimientoDTO getProcedimiento(Long id) {
-
-
+    public ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO) {
         return null;
     }
 
     @Override
-    public ProcedimientoDTO updateProcedimiento(Long id, ProcedimientoDTO procedimientoDTO) {
-        return null;
-    }
-
-    @Override
-    public void deleteProcedimiento(Long id) {
+    public void deleteById(Long id) {
 
     }
 

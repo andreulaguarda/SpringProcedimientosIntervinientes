@@ -182,3 +182,5 @@ jmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/client/I
 nmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/controller/ProcedimientoController.java,a\4\a4f8e64c8aede949eb03cd50fe32f422156f66ae
 ê
 `msvc-intervinientes/src/main/java/org/andreu/tarea2/msvcintervinientes/dto/IntervinienteDTO.java,8\a\8ab158bdbf6902093637fac46641e6f6cb6a12da
+ê
+`msvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/dto/IntervinienteDTO.java,f\e\fef94a7172162e42efea74419ddda5149f1b2392

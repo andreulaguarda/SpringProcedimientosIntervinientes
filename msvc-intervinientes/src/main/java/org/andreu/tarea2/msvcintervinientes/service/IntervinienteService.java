@@ -2,12 +2,16 @@ package org.andreu.tarea2.msvcintervinientes.service;
 
 import org.andreu.tarea2.msvcintervinientes.dto.IntervinienteDTO;
 import org.andreu.tarea2.msvcintervinientes.model.entity.Interviniente;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface IntervinienteService {
 
     List<IntervinienteDTO> findAll();
+
+    List<IntervinienteDTO> findbyIdProcedimiento(Long idProcedimiento);
 
     Optional<IntervinienteDTO> findById(Long id);
 
@@ -16,5 +20,7 @@ public interface IntervinienteService {
     IntervinienteDTO update(IntervinienteDTO intervinienteDTO);
 
     void deleteById(Long id);
+
+
 
 }

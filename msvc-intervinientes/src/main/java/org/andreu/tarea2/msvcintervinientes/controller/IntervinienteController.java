@@ -31,6 +31,12 @@ public class IntervinienteController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/procedimiento/{idProcedimiento}")
+    public ResponseEntity<List<IntervinienteDTO>> findbyIdProcedimiento(@PathVariable Long idProcedimiento) {
+        List<IntervinienteDTO> intervinientes = intervinienteService.findbyIdProcedimiento(idProcedimiento);
+        return new ResponseEntity<>(intervinientes, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<IntervinienteDTO> save(@RequestBody IntervinienteDTO intervinienteDTO) {
         IntervinienteDTO savedInterviniente = intervinienteService.save(intervinienteDTO);
