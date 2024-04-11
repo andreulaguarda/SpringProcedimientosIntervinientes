@@ -1,7 +1,9 @@
 package org.andreu.tarea2.msvcintervinientes.service;
 
+import org.andreu.tarea2.msvcintervinientes.dto.IntervinienteDTO;
 import org.andreu.tarea2.msvcintervinientes.model.entity.Interviniente;
 import org.andreu.tarea2.msvcintervinientes.repository.IntervinienteRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,28 +17,45 @@ public class IntervinienteServiceImpl implements IntervinienteService {
     @Autowired
     private IntervinienteRepository intervinienteRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @Override
     @Transactional(readOnly = true)
-    public List<Interviniente> findAll() {
-        return intervinienteRepository.findAll();
+    public List<IntervinienteDTO> findAll() {
+
+        List<Interviniente> intervinientes = intervinienteRepository.findAll();
+
+        return intervinientes.stream().map(interviniente -> modelMapper.map(interviniente, IntervinienteDTO.class)).toList();
+
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Interviniente> findById(Long id) {
-        return intervinienteRepository.findById(id);
+    public Optional<IntervinienteDTO> findById(Long id) {
+
+        Optional<Interviniente> interviniente = intervinienteRepository.findById(id);
+
+        return interviniente.map(value -> modelMapper.map(value, IntervinienteDTO.class));
+
     }
 
     @Override
     @Transactional
-    public Interviniente save(Interviniente interviniente) {
-        return intervinienteRepository.save(interviniente);
+    public IntervinienteDTO save(IntervinienteDTO intervinienteDTO) {
+
+        Interviniente interviniente = modelMapper.map(intervinienteDTO, Interviniente.class);
+
+        return modelMapper.map(intervinienteRepository.save(interviniente), IntervinienteDTO.class);
     }
 
     @Override
     @Transactional
-    public Interviniente update(Interviniente interviniente) {
-        return intervinienteRepository.save(interviniente);
+    public IntervinienteDTO update(IntervinienteDTO intervinienteDTO) {
+
+            Interviniente interviniente = modelMapper.map(intervinienteDTO, Interviniente.class);
+
+            return modelMapper.map(intervinienteRepository.save(interviniente), IntervinienteDTO.class);
     }
 
     @Override

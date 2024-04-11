@@ -1,18 +1,19 @@
 package org.andreu.tarea2.msvcintervinientes.service;
 
+import org.andreu.tarea2.msvcintervinientes.dto.IntervinienteDTO;
 import org.andreu.tarea2.msvcintervinientes.model.entity.Interviniente;
 import java.util.List;
 import java.util.Optional;
 
 public interface IntervinienteService {
 
-    List<Interviniente> findAll();
+    List<IntervinienteDTO> findAll();
 
-    Optional<Interviniente> findById(Long id);
+    Optional<IntervinienteDTO> findById(Long id);
 
-    Interviniente save(Interviniente interviniente);
+    IntervinienteDTO save(IntervinienteDTO intervinienteDTO);
 
-    Interviniente update(Interviniente interviniente);
+    IntervinienteDTO update(IntervinienteDTO intervinienteDTO);
 
     void deleteById(Long id);
 
