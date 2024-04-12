@@ -3,6 +3,7 @@ package org.andreu.tarea2.msvcprocedimientos.service;
 import org.andreu.tarea2.msvcprocedimientos.client.IntervinienteClientRest;
 import org.andreu.tarea2.msvcprocedimientos.dto.IntervinienteDTO;
 import org.andreu.tarea2.msvcprocedimientos.dto.ProcedimientoDTO;
+import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 import org.andreu.tarea2.msvcprocedimientos.model.entity.Procedimiento;
 import org.andreu.tarea2.msvcprocedimientos.repository.ProcedimientoRepository;
 import org.modelmapper.ModelMapper;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,7 +63,75 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
         Procedimiento procedimiento = modelMapper.map(procedimientoDTO, Procedimiento.class);
 
-        procedimiento.setDatosAuditoria(procedimientoDTO.getDatosAutoria());
+        DatosAutoria datosAutoria = new DatosAutoria();
+
+        datosAutoria.setFechaCreacion(LocalDate.now());
+
+        datosAutoria.setUsuarioCreacion("andreulaguarda");
+
+        procedimiento.setDatosAuditoria(datosAutoria);
+
+        ProcedimientoDTO savedProcedimientoDTO = modelMapper.map(procedimientoRepository.save(procedimiento), ProcedimientoDTO.class);
+
+        for (IntervinienteDTO intervinienteDTO : procedimientoDTO.getIntervinientes()) {
+
+            intervinienteDTO.setIdProcedimiento(savedProcedimientoDTO.getId());
+
+            intervinienteClientRest.saveInterviniente(intervinienteDTO);
+
+        }
+
+        List<IntervinienteDTO> intervinientes = intervinienteClientRest.getIntervinientesByIdProcedimiento(procedimiento.getId());
+
+        savedProcedimientoDTO.setIntervinientes(intervinientes);
+
+        return savedProcedimientoDTO;
+
+    }
+
+    @Override
+    @Transactional
+    public ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO) {
+
+        // Se obtienen los intervinientes anteriores y se comparan con los actuales
+
+        List<IntervinienteDTO> intervinientesAnteriores = intervinienteClientRest.getIntervinientesByIdProcedimiento(procedimientoDTO.getId());
+
+        List<IntervinienteDTO> intervinientesNuevos = procedimientoDTO.getIntervinientes();
+
+        // Se eliminan los intervinientes anteriores que ya no estan en la nueva lista de intervinientes
+        for (IntervinienteDTO intervinienteDTO : intervinientesAnteriores) {
+            int index = intervinientesNuevos.indexOf(intervinienteDTO);
+            if (index == -1) {
+                intervinienteClientRest.deleteInterviniente(intervinienteDTO.getId());
+            } else {
+                // Se actualizan los intervinientes que ya estaban en la lista de intervinientes
+                IntervinienteDTO intervinienteActualizado = intervinientesNuevos.get(index);
+                intervinienteActualizado.setId(intervinienteDTO.getId());
+                intervinienteActualizado.setIdProcedimiento(intervinienteDTO.getIdProcedimiento());
+                DatosAutoria datosAutoria = intervinienteDTO.getDatosAutoria();
+                datosAutoria.setFechaModificacion(LocalDate.now());
+                datosAutoria.setUsuarioModificacion("andreulaguarda");
+                intervinienteActualizado.setDatosAutoria(datosAutoria);
+                intervinienteClientRest.updateInterviniente(intervinienteActualizado, intervinienteActualizado.getId());
+                intervinientesNuevos.remove(intervinienteActualizado);
+            }
+        }
+
+        // Se añaden los intervinientes nuevos
+        procedimientoDTO.setIntervinientes(intervinientesNuevos);
+
+        Procedimiento procedimiento = modelMapper.map(procedimientoDTO, Procedimiento.class);
+
+        Procedimiento existingProcedimiento = procedimientoRepository.findById(procedimiento.getId()).get();
+
+        DatosAutoria datosAutoria = existingProcedimiento.getDatosAuditoria();
+
+        datosAutoria.setFechaModificacion(LocalDate.now());
+
+        datosAutoria.setUsuarioModificacion("andreulaguarda");
+
+        procedimiento.setDatosAuditoria(datosAutoria);
 
         ProcedimientoDTO savedProcedimientoDTO = modelMapper.map(procedimientoRepository.save(procedimiento), ProcedimientoDTO.class);
 

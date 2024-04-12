@@ -1,6 +1,8 @@
 package org.andreu.tarea2.msvcprocedimientos.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 
@@ -9,11 +11,11 @@ import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 @Data
 public class Procedimiento {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "num_procedimiento")
     private Integer numProcedimiento;
 
     private Integer anyo;

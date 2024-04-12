@@ -47,7 +47,7 @@ public class IntervinienteController {
         Optional<IntervinienteDTO> intervinienteOptional = intervinienteService.findById(id);
         if (intervinienteOptional.isPresent()) {
             intervinienteDetails.setId(id);
-            IntervinienteDTO updatedInterviniente = intervinienteService.save(intervinienteDetails);
+            IntervinienteDTO updatedInterviniente = intervinienteService.update(intervinienteDetails);
             return new ResponseEntity<>(updatedInterviniente, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

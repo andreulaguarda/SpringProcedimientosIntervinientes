@@ -18,6 +18,9 @@ public interface IntervinienteClientRest {
     @PostMapping
     IntervinienteDTO saveInterviniente(@RequestBody IntervinienteDTO intervinienteDTO);
 
+    @PutMapping("/{id}")
+    IntervinienteDTO updateInterviniente(@RequestBody IntervinienteDTO intervinienteDTO, @PathVariable Long id);
+
     @DeleteMapping("/{id}")
     void deleteInterviniente(@PathVariable Long id);
 

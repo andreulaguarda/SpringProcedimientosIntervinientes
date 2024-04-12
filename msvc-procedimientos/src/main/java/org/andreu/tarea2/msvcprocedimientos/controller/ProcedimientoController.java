@@ -1,13 +1,17 @@
 package org.andreu.tarea2.msvcprocedimientos.controller;
 
+import jakarta.validation.Valid;
 import org.andreu.tarea2.msvcprocedimientos.dto.ProcedimientoDTO;
 import org.andreu.tarea2.msvcprocedimientos.service.ProcedimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -18,12 +22,15 @@ public class ProcedimientoController {
     private ProcedimientoService procedimientoService;
 
     @PostMapping
-    public ResponseEntity<ProcedimientoDTO> createProcedimiento(@RequestBody ProcedimientoDTO procedimientoDTO) {
-
+    public ResponseEntity<?> createProcedimiento(@Valid @RequestBody ProcedimientoDTO procedimientoDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return validar(result);
+        }
         ProcedimientoDTO savedProcedimientoDTO = procedimientoService.save(procedimientoDTO);
 
         return new ResponseEntity<>(savedProcedimientoDTO, HttpStatus.CREATED);
     }
+
 
     @GetMapping
     public ResponseEntity<List<ProcedimientoDTO>> getAllProcedimientos() {
@@ -49,8 +56,7 @@ public class ProcedimientoController {
 
         if (procedimiento.isPresent()) {
             procedimientoDTO.setId(id);
-            procedimientoService.deleteRelatedIntervinientes(id);
-            ProcedimientoDTO updatedProcedimiento = procedimientoService.save(procedimientoDTO);
+            ProcedimientoDTO updatedProcedimiento = procedimientoService.update(procedimientoDTO);
             return new ResponseEntity<>(updatedProcedimiento, HttpStatus.OK);
         }
 
@@ -71,6 +77,12 @@ public class ProcedimientoController {
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+    }
+
+    private static ResponseEntity<Map<String, String>> validar(BindingResult result) {
+        Map<String, String> errores = new HashMap<>();
+        result.getFieldErrors().forEach(err -> errores.put(err.getField(), err.getDefaultMessage()));
+        return ResponseEntity.badRequest().body(errores);
     }
 
 }

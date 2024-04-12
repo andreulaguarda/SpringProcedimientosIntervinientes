@@ -12,6 +12,7 @@ public interface ProcedimientoService {
     Optional<ProcedimientoDTO> findById(Long id);
 
     ProcedimientoDTO save(ProcedimientoDTO procedimientoDTO);
+    ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO);
 
     void deleteById(Long id);
 
