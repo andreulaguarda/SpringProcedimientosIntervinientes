@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.andreu.tarea2.msvcintervinientes.model.DatosAutoria;
-import org.andreu.tarea2.msvcintervinientes.model.TipoIntervencion;
 
 @Data
 public class IntervinienteDTO {
@@ -22,8 +21,8 @@ public class IntervinienteDTO {
     private Long idProcedimiento;
 
     // Valida que el tipo de intervencion no sea nulo ni vacio
-    @NotNull(message = "El tipo de intervencion no puede ser nulo")
-    private TipoIntervencion tipoIntervencion;
+    @NotBlank(message = "El tipo de intervencion no puede estar vacio ni ser nulo")
+    private String tipoIntervencion;
 
     private DatosAutoria datosAutoria;
 

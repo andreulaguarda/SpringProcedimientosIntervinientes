@@ -2,12 +2,10 @@ package org.andreu.tarea2.msvcintervinientes.controller;
 
 import jakarta.validation.Valid;
 import org.andreu.tarea2.msvcintervinientes.dto.IntervinienteDTO;
-import org.andreu.tarea2.msvcintervinientes.model.TipoIntervencion;
 import org.andreu.tarea2.msvcintervinientes.service.IntervinienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping

@@ -3,7 +3,6 @@ package org.andreu.tarea2.msvcprocedimientos.dto;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
-import org.andreu.tarea2.msvcprocedimientos.model.TipoIntervencion;
 
 import java.util.Objects;
 
@@ -22,8 +21,8 @@ public class IntervinienteDTO {
     private Long idProcedimiento;
 
     // Valida que el tipo de intervencion no sea nulo ni vacio
-    @NotBlank(message = "El tipo de intervencion no puede estar vacio")
-    private TipoIntervencion tipoIntervencion;
+    @NotBlank(message = "El tipo de intervencion no puede estar vacio ni ser nulo")
+    private String tipoIntervencion;
 
     private DatosAutoria datosAutoria;
 
