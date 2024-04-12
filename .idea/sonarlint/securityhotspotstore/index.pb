@@ -178,3 +178,5 @@ nmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/controll
 `msvc-intervinientes/src/main/java/org/andreu/tarea2/msvcintervinientes/dto/IntervinienteDTO.java,8\a\8ab158bdbf6902093637fac46641e6f6cb6a12da
 ê
 `msvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/dto/IntervinienteDTO.java,f\e\fef94a7172162e42efea74419ddda5149f1b2392
+ô
+imsvc-intervinientes/src/main/java/org/andreu/tarea2/msvcintervinientes/config/GlobalExceptionHandler.java,7\8\7878a9ba92f8674b63bb291d1612244a02dfe0b1

@@ -3,6 +3,7 @@ package org.andreu.tarea2.msvcprocedimientos.dto;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
@@ -27,6 +28,8 @@ public class ProcedimientoDTO {
     private Integer anyo;
 
     private DatosAutoria datosAutoria;
+
+    @NotEmpty(message = "La lista de intervinientes no puede estar vacia")
     private List<IntervinienteDTO> intervinientes;
 
 }

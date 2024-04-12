@@ -1,14 +1,21 @@
 package org.andreu.tarea2.msvcintervinientes.controller;
 
+import jakarta.validation.Valid;
 import org.andreu.tarea2.msvcintervinientes.dto.IntervinienteDTO;
+import org.andreu.tarea2.msvcintervinientes.model.TipoIntervencion;
 import org.andreu.tarea2.msvcintervinientes.service.IntervinienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping
@@ -37,13 +44,23 @@ public class IntervinienteController {
     }
 
     @PostMapping
-    public ResponseEntity<IntervinienteDTO> save(@RequestBody IntervinienteDTO intervinienteDTO) {
+    public ResponseEntity<?> save(@Valid @RequestBody IntervinienteDTO intervinienteDTO, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return validar(result);
+        }
+
         IntervinienteDTO savedInterviniente = intervinienteService.save(intervinienteDTO);
         return new ResponseEntity<>(savedInterviniente, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<IntervinienteDTO> update(@PathVariable Long id, @RequestBody IntervinienteDTO intervinienteDetails) {
+    public ResponseEntity<?> update(@PathVariable Long id, @Valid @RequestBody IntervinienteDTO intervinienteDetails, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return validar(result);
+        }
+
         Optional<IntervinienteDTO> intervinienteOptional = intervinienteService.findById(id);
         if (intervinienteOptional.isPresent()) {
             intervinienteDetails.setId(id);
@@ -63,5 +80,11 @@ public class IntervinienteController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    private static ResponseEntity<Map<String, String>> validar(BindingResult result) {
+        Map<String, String> errores = new HashMap<>();
+        result.getFieldErrors().forEach(err -> errores.put(err.getField(), err.getDefaultMessage()));
+        return ResponseEntity.badRequest().body(errores);
     }
 }

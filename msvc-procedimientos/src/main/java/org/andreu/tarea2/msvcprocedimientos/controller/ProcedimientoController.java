@@ -21,16 +21,6 @@ public class ProcedimientoController {
     @Autowired
     private ProcedimientoService procedimientoService;
 
-    @PostMapping
-    public ResponseEntity<?> createProcedimiento(@Valid @RequestBody ProcedimientoDTO procedimientoDTO, BindingResult result) {
-        if (result.hasErrors()) {
-            return validar(result);
-        }
-        ProcedimientoDTO savedProcedimientoDTO = procedimientoService.save(procedimientoDTO);
-
-        return new ResponseEntity<>(savedProcedimientoDTO, HttpStatus.CREATED);
-    }
-
 
     @GetMapping
     public ResponseEntity<List<ProcedimientoDTO>> getAllProcedimientos() {
@@ -49,8 +39,22 @@ public class ProcedimientoController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping
+    public ResponseEntity<?> createProcedimiento(@Valid @RequestBody ProcedimientoDTO procedimientoDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return validar(result);
+        }
+        ProcedimientoDTO savedProcedimientoDTO = procedimientoService.save(procedimientoDTO);
+
+        return new ResponseEntity<>(savedProcedimientoDTO, HttpStatus.CREATED);
+    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<ProcedimientoDTO> updateProcedimiento(@RequestBody ProcedimientoDTO procedimientoDTO, @PathVariable Long id) {
+    public ResponseEntity<?> updateProcedimiento(@Valid @RequestBody ProcedimientoDTO procedimientoDTO, @PathVariable Long id, BindingResult result) {
+
+        if (result.hasErrors()) {
+            return validar(result);
+        }
 
         Optional<ProcedimientoDTO> procedimiento = procedimientoService.findById(id);
 
