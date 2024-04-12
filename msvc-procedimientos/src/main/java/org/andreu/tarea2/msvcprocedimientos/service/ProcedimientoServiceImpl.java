@@ -27,6 +27,8 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
     @Autowired
     private ModelMapper modelMapper;
 
+    private static final String USUARIO = "andreulaguarda";
+
     @Override
     @Transactional(readOnly = true)
     public List<ProcedimientoDTO> findAll() {
@@ -67,7 +69,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
         datosAutoria.setFechaCreacion(LocalDate.now());
 
-        datosAutoria.setUsuarioCreacion("andreulaguarda");
+        datosAutoria.setUsuarioCreacion(USUARIO);
 
         procedimiento.setDatosAuditoria(datosAutoria);
 
@@ -111,7 +113,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
                 intervinienteActualizado.setIdProcedimiento(intervinienteDTO.getIdProcedimiento());
                 DatosAutoria datosAutoria = intervinienteDTO.getDatosAutoria();
                 datosAutoria.setFechaModificacion(LocalDate.now());
-                datosAutoria.setUsuarioModificacion("andreulaguarda");
+                datosAutoria.setUsuarioModificacion(USUARIO);
                 intervinienteActualizado.setDatosAutoria(datosAutoria);
                 intervinienteClientRest.updateInterviniente(intervinienteActualizado, intervinienteActualizado.getId());
                 intervinientesNuevos.remove(intervinienteActualizado);
@@ -129,7 +131,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
         datosAutoria.setFechaModificacion(LocalDate.now());
 
-        datosAutoria.setUsuarioModificacion("andreulaguarda");
+        datosAutoria.setUsuarioModificacion(USUARIO);
 
         procedimiento.setDatosAuditoria(datosAutoria);
 

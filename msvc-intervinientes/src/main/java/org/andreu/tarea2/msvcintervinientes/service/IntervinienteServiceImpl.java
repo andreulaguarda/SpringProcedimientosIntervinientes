@@ -77,13 +77,17 @@ public class IntervinienteServiceImpl implements IntervinienteService {
 
         Optional<Interviniente> existingInterviniente = intervinienteRepository.findById(interviniente.getId());
 
-        DatosAutoria datosAutoria = existingInterviniente.get().getDatosAutoria();
 
-        datosAutoria.setFechaModificacion(LocalDate.now());
+        if (existingInterviniente.isPresent()) {
 
-        datosAutoria.setUsuarioModificacion("andreulaguarda");
+            DatosAutoria datosAutoria = existingInterviniente.get().getDatosAutoria();
 
-        interviniente.setDatosAutoria(datosAutoria);
+            datosAutoria.setFechaModificacion(LocalDate.now());
+
+            datosAutoria.setUsuarioModificacion("andreulaguarda");
+
+            interviniente.setDatosAutoria(datosAutoria);
+        }
 
         return modelMapper.map(intervinienteRepository.save(interviniente), IntervinienteDTO.class);
     }

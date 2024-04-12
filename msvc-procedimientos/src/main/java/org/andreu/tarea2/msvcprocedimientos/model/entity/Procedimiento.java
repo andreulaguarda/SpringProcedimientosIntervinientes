@@ -1,8 +1,6 @@
 package org.andreu.tarea2.msvcprocedimientos.model.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import lombok.Data;
 import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 
