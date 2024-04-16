@@ -1,4 +1,4 @@
-# Tarea2 Feign
+# Tarea2 Feign - Procedimientos e Intervinientes
 
 Este proyecto es una aplicación web de gestión de procedimientos e intervinientes. Permite a los usuarios crear, leer,
 actualizar y eliminar procedimientos, así como los intervinientes asociados a cada procedimiento.
@@ -7,10 +7,12 @@ Consta de dos microservicios independientes, uno para procedimientos, cada uno c
 
 Al tratarse de una relación de uno a muchos, un procedimiento puede tener varios intervinientes, pero un interviniente
 solo puede estar asociado a un procedimiento. Por este motivo, cada interviniente contiene una referencia a la id 
-del procedimiento al que pertenece.
+del procedimiento al que pertenece, utilizada para relacionar los intervinientes con los procedimientos, listar
+los intervinientes asociados a un procedimiento, etc.
 
-El microservicio de procedimientos utiliza un cliente Feign para comunicarse con el microservicio de intervinientes y
-obtener, crear, actualizar o eliminar los intervinientes asociados a un procedimiento.
+La aplicación está pensada para que la creación, actualización o eliminación de intervinientes asociados a un 
+procedimiento se realice a través del microservicio de procedimientos, que a su vez se comunica con el CRUD del 
+microservicio de intervinientes mediante Feign.
 
 ## Cómo ejecutar la aplicación
 
@@ -40,16 +42,19 @@ http://localhost:8002/swagger-ui/index.html.
 
 ## Pruebas unitarias
 
-Se han realizado pruebas unitarias para el servicio `ProcedimientoService` y el controlador `ProcedimientoController`. 
+Se han realizado pruebas unitarias para todas las clases de la aplicación. 
 
-Se pueden ejecutar las pruebas en la carpeta `src/test/java/com/andreu/procedimientos`.
+### Ejecución de las pruebas unitarias del microservicio de procedimientos
 
-También se puede consultar el informe de cobertura de las pruebas unitarias abriendo en un navegador el archivo
+Se pueden ejecutar las pruebas en la carpeta `/mscv-procedimientos/src/test/`.
 
-[index.html](./htmlReport/index.html) ubicado en la carpeta `htmlReport`."
+Todos los tests superados con éxito con una cobertura del 100% en clases y métodos, y un 87% en líneas.
 
-- `ProcedimientoServiceImplTest`: Pruebas unitarias para el servicio `ProcedimientoService`.
-- `ProcedimientoControllerTest`: Pruebas unitarias para el controlador `ProcedimientoController`.
+### Ejecución de las pruebas unitarias del microservicio de intervinientes
+
+Se pueden ejecutar las pruebas en la carpeta `/mscv-intervinientes/src/test/`.
+
+Todos los tests superados con éxito con una cobertura del 100% en clases y métodos, y un 94% en líneas.
 
 ## Depuración con SonarLint
 Se ha utilizado SonarLint para revisar el código y asegurar la calidad del mismo. 

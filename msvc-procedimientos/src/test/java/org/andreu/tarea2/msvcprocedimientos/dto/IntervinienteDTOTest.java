@@ -39,8 +39,8 @@ class IntervinienteDTOTest {
     @Test
     void testEquals() {
         IntervinienteDTO intervinienteCopia = intervinienteDTO1;
-        assertTrue(intervinienteDTO1.equals(intervinienteCopia));
-        assertTrue(!intervinienteDTO2.equals(intervinienteCopia));
+        assertEquals(intervinienteDTO1, intervinienteCopia);
+        assertNotEquals(intervinienteDTO2, intervinienteCopia);
     }
 
 
