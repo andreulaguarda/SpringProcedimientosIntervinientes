@@ -194,3 +194,17 @@ pmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/service/
 -postman/Tarea2  Feign.postman_collection.json,3\f\3fa563dc53f687362425b90c1f81bd7d138ea731
 w
 G.idea/sonarlint/issuestore/6/c/6c7b30e8e3186031546d8a54fef2f86d11d5b5fe,e\4\e46ea1a7c95422e4ce109ae6e19c6b5ed3879ea7
+ù
+mmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/config/GlobalExceptionHandlerTest.java,c\2\c2ae9985f38f3cc0ac34ad8fda91d5526f19c355
+¢
+rmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/controller/IntervinienteControllerTest.java,f\f\ff09a67cb8ef6d3e968673a998f6596128c8a828
+î
+dmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/dto/IntervinienteDTOTest.java,4\d\4d6fb54709e1ffc7d3e0a4f24c3b07752bac7d89
+í
+bmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/model/DatosAutoriaTest.java,0\c\0cfe748e56c6fb349731b27978bbff4b4f15d9bb
+ö
+jmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/model/entity/IntervinienteTest.java,e\4\e46c1b1a68f7b5bad77deb2bac6e276ab2e7cd39
+ú
+lmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/service/IntervinienteServiceTest.java,3\9\390bf54d2e4fd670dcc44b82fe6676713008d6da
+†
+pmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/service/IntervinienteServiceImplTest.java,f\a\fa7ccf9c713848c874e793c5a40f83fa182f57a8

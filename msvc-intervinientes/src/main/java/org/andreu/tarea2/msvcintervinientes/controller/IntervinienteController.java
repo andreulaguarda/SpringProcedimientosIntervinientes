@@ -79,7 +79,7 @@ public class IntervinienteController {
         }
     }
 
-    private static ResponseEntity<Map<String, String>> validar(BindingResult result) {
+    static ResponseEntity<Map<String, String>> validar(BindingResult result) {
         Map<String, String> errores = new HashMap<>();
         result.getFieldErrors().forEach(err -> errores.put(err.getField(), err.getDefaultMessage()));
         return ResponseEntity.badRequest().body(errores);
