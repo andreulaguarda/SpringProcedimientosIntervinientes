@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Embeddable
 public class DatosAutoria {
 
-
     private LocalDate fechaCreacion;
 
     private String usuarioCreacion;

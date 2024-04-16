@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "afe82e02-26ba-41b7-aebe-dcb3ff29f716",
+		"name": "Tarea2  Feign",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33592003"
+	},
+	"item": [
+		{
+			"name": "Crear Procedimiento con 1 Interviniente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numProcedimiento\": 1254,\r\n    \"anyo\": 2024,\r\n    \"intervinientes\": [\r\n        {\r\n    \"nombre\": \"Andreu Laguarda\",\r\n    \"tipoIntervencion\": \"TIPO1\"\r\n}\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001",
+					"host": [
+						"localhost"
+					],
+					"port": "8001"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Procedimiento con 2 Intervinientes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numProcedimiento\": 1254,\r\n    \"anyo\": 2024,\r\n    \"intervinientes\": [\r\n        {\r\n    \"nombre\": \"Andreu Laguarda\",\r\n    \"tipoIntervencion\": \"TIPO1\"\r\n},\r\n{\r\n    \"nombre\": \"Pepe Palotes\",\r\n    \"tipoIntervencion\": \"TIPO2\"\r\n}\r\n\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001",
+					"host": [
+						"localhost"
+					],
+					"port": "8001"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Procedimiento con Errores",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001",
+					"host": [
+						"localhost"
+					],
+					"port": "8001"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Procedimiento con Errores 2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numProcedimiento\": 12597654,\r\n    \"anyo\": 88\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001",
+					"host": [
+						"localhost"
+					],
+					"port": "8001"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Procedimientos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001",
+					"host": [
+						"localhost"
+					],
+					"port": "8001"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalle Procedimiento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Procedimiento con nuevo Interviniente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"numProcedimiento\": 1254,\r\n    \"anyo\": 2024,\r\n    \"intervinientes\": [\r\n        {\r\n            \"nombre\": \"Pepito Palotes\",\r\n            \"tipoIntervencion\": \"TIPO2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Procedimiento editando Interviniente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"numProcedimiento\": 1254,\r\n    \"anyo\": 2024,\r\n    \"intervinientes\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nombre\": \"Andreu Actualizado\",\r\n            \"tipoIntervencion\": \"TIPO1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Procedimiento editando Interviniente y añadiendo interviniente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"numProcedimiento\": 1254,\r\n    \"anyo\": 2024,\r\n    \"intervinientes\": [\r\n        {\r\n            \"id\": 1,\r\n            \"nombre\": \"Andreu Actualizado\",\r\n            \"tipoIntervencion\": \"TIPO1\"\r\n        },\r\n        {\r\n            \"nombre\": \"Nuevo Interviniente\",\r\n            \"tipoIntervencion\": \"TIPO2\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8001/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Procedimiento",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8001/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Interviniente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Pepe Palotes\",\r\n    \"tipoIntervencion\": \"Tipo de intervencion\",\r\n    \"fechaCreacion\": \"2024-01-20\",\r\n    \"fechaModificacion\": \"2024-01-20\",\r\n    \"idUsuarioCreacion\": \"ALR1273\",\r\n    \"idUsuarioModificacion\": \"ALR1273\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8002",
+					"host": [
+						"localhost"
+					],
+					"port": "8002"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Interviniente con Errores",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8002",
+					"host": [
+						"localhost"
+					],
+					"port": "8002"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Intervinientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8002",
+					"host": [
+						"localhost"
+					],
+					"port": "8002"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalle Interviniente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8002/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Intervinientes por Procedimiento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8002/procedimiento/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"procedimiento",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Interviniente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Pepe Palotes Actualizado\",\r\n    \"tipoIntervencion\": \"Tipo de intervencion\",\r\n    \"fechaCreacion\": \"\",\r\n    \"fechaModificacion\": \"2024-01-20\",\r\n    \"idUsuarioCreacion\": \"ALR1273\",\r\n    \"idUsuarioModificacion\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8002/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Interviniente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8002/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8002",
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

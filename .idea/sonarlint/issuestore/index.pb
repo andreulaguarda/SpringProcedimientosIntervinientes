@@ -20,8 +20,6 @@ Q.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140
 w
 G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\863e0292fd7e9b3e74dafd6cc01f73ba76346482
 Å
-Q.idea/sonarlint/securityhotspotstore/6/c/6c5d5eaaf01889ab444852d45ed8f17a1298d7b3,7\0\702bfd3485bbd1e6d3b2a49ea5ad508baa3b0303
-Å
 Q.idea/sonarlint/securityhotspotstore/1/4/14087a78aae143e5ef72bad9895339e8a30e641d,3\c\3c7b364019228934774801282387ef3cec3073b4
 w
 G.idea/sonarlint/issuestore/6/d/6d78fbe4c07d13f689b3ab017080c9133c4921bf,4\5\450a074e0390ea159b51b6ee87a9abd5aae93bb0
@@ -66,8 +64,6 @@ hmsvc-intervinientes/src/main/java/org/andreu/tarea2/msvcintervinientes/service/
 lmsvc-intervinientes/src/main/java/org/andreu/tarea2/msvcintervinientes/service/IntervinienteServiceImpl.java,1\e\1e83c26bfd472d3a36b196e33f632893be6b094a
 û
 nmsvc-intervinientes/src/main/java/org/andreu/tarea2/msvcintervinientes/controller/IntervinienteController.java,e\9\e983f3a07e64ebfebfcc2ad70cef772e3ed8b2be
-í
-bmsvc-intervinientes/src/main/java/org/andreu/tarea2/msvcintervinientes/model/TipoIntervencion.java,3\e\3e927096eab28154fefbbb6d8415f3546ea8444b
 Å
 Q.idea/sonarlint/securityhotspotstore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482,0\c\0c4799549ebca80c86406fd218445fef27b61acc
 Å
@@ -80,8 +76,6 @@ Q.idea/sonarlint/securityhotspotstore/4/3/43b6822730a5c0573b5c990122a72706748156
 Q.idea/sonarlint/securityhotspotstore/9/0/903f0a749f2cc36e4a91a0e2b6fe91f98c09b723,0\d\0d62722465aa7bd5a7639f8a7d86e3e5d15a9dc2
 Å
 Q.idea/sonarlint/securityhotspotstore/1/3/132ea8c803e5100201297c4a7d1f21c426b48a3f,8\b\8b44b7a9b36529ceab29c96e6a5a8fe88c477518
-Å
-Q.idea/sonarlint/securityhotspotstore/7/0/702bfd3485bbd1e6d3b2a49ea5ad508baa3b0303,4\9\49ca660bd3c7c81bef898cdc712a2152ec3f37c1
 Å
 Q.idea/sonarlint/securityhotspotstore/7/2/727dd40a760b959594f8f83745a6859ca6d55923,d\4\d4159ca4c8b5ad4cceb580cf4fa02455045615a4
 Å
@@ -116,8 +110,6 @@ w
 G.idea/sonarlint/issuestore/9/0/903f0a749f2cc36e4a91a0e2b6fe91f98c09b723,4\8\48685d8088007a35da7e9adbb5d30876be460025
 w
 G.idea/sonarlint/issuestore/8/6/863e0292fd7e9b3e74dafd6cc01f73ba76346482,3\0\30f9777ea696a18aa49d3e9967e93a4276065227
-w
-G.idea/sonarlint/issuestore/7/0/702bfd3485bbd1e6d3b2a49ea5ad508baa3b0303,0\0\00a38afc7ca06f8290611f6accff6d55e0a645fc
 w
 G.idea/sonarlint/issuestore/7/2/727dd40a760b959594f8f83745a6859ca6d55923,1\a\1af3b27a7a9c46e596edac1baff7c5d7a5de92ff
 Å
@@ -160,8 +152,6 @@ Q.idea/sonarlint/securityhotspotstore/d/d/dd9bfa5a27e903325ae68ac5a975a6a60ed083
 ^msvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/model/DatosAutoria.java,1\3\13570143eab9cc856d7e10ce9d9bdeb5e810e186
 ñ
 fmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/model/entity/Procedimiento.java,b\5\b56063163e9bf207a827471a7c2119ea42e91b93
-í
-bmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/model/TipoIntervencion.java,f\5\f54be8e8f2097d67506e573513d6b9f283fe498e
 ê
 `msvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/dto/ProcedimientoDTO.java,9\0\90a84c7987b616dbd683bc360ac51d379ae71b1f
 ò
@@ -182,3 +172,25 @@ nmsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/controll
 imsvc-intervinientes/src/main/java/org/andreu/tarea2/msvcintervinientes/config/GlobalExceptionHandler.java,7\8\7878a9ba92f8674b63bb291d1612244a02dfe0b1
 ô
 imsvc-procedimientos/src/main/java/org/andreu/tarea2/msvcprocedimientos/config/GlobalExceptionHandler.java,5\8\58fcbcc9c0ee00b3b8f2174cb9787e700644469b
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+û
+nmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/client/IntervinienteClientRestTest.java,6\b\6b09b7d1fde04e485338cd3a8028ef8cae1dfa44
+ù
+mmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/config/GlobalExceptionHandlerTest.java,d\5\d55f9297d08f0a6c882a3231040ecb55e8f855a2
+¢
+rmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/controller/ProcedimientoControllerTest.java,b\f\bf990078c4f822f9460dafff38384551aeaad3e4
+î
+dmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/dto/IntervinienteDTOTest.java,9\a\9acffc60419dd0be62df6870ebed49721b1890ba
+î
+dmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/dto/ProcedimientoDTOTest.java,b\f\bf84e6a928e38d2e2c9a831b46c43a80cd835bfd
+ö
+jmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/model/entity/ProcedimientoTest.java,e\a\ea6c6eedc9d50adb6c3b17372b9f804dc7b599c8
+í
+bmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/model/DatosAutoriaTest.java,f\5\f5b375c2b103eb7314aaa1f2ec24bbfbe7aa3a9b
+†
+pmsvc-procedimientos/src/test/java/org/andreu/tarea2/msvcprocedimientos/service/ProcedimientoServiceImplTest.java,a\a\aa28363d26e75e25f94f3f64ea9dbba98eba29b7
+]
+-postman/Tarea2  Feign.postman_collection.json,3\f\3fa563dc53f687362425b90c1f81bd7d138ea731
+w
+G.idea/sonarlint/issuestore/6/c/6c7b30e8e3186031546d8a54fef2f86d11d5b5fe,e\4\e46ea1a7c95422e4ce109ae6e19c6b5ed3879ea7
