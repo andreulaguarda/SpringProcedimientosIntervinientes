@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.andreu.tarea2.msvcintervinientes.model.DatosAutoria;
 
+// Clase que representa un objeto de transferencia de datos de Interviniente con  atributos y anotaciones de validacion
 @Data
 public class IntervinienteDTO {
 

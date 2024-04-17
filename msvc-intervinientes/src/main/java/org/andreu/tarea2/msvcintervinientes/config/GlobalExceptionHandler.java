@@ -6,7 +6,8 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-
+// Manejador de excepciones globales que devuelve un mensaje de error personalizado cuando se produce una excepción
+// de tipo HttpMessageNotReadableException (cuando el cuerpo de la solicitud no es válido)
 @ControllerAdvice
 public class GlobalExceptionHandler {
 

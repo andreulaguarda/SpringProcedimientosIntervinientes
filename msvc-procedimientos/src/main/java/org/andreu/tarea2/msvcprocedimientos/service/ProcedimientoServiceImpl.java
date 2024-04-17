@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+// Implementación de los servicios de Procedimiento que se comunican con el repositorio de Procedimientos y el cliente de Intervinientes
 @Service
 public class ProcedimientoServiceImpl implements ProcedimientoService {
 
@@ -29,6 +30,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
     private static final String USUARIO = "andreulaguarda";
 
+    // Se obtienen todos los procedimientos y se mapean a DTO
     @Override
     @Transactional(readOnly = true)
     public List<ProcedimientoDTO> findAll() {
@@ -39,6 +41,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
     }
 
+    // Se obtiene un procedimiento por su id y se mapea a DTO junto con sus intervinientes obtenidos del cliente de Intervinientes
     @Override
     @Transactional(readOnly = true)
     public Optional<ProcedimientoDTO> findById(Long id) {
@@ -59,12 +62,16 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
     }
 
+    // Se guarda un procedimiento y sus intervinientes y se devuelve el procedimiento guardado mapeado a DTO
+    // con sus intervinientes y sus datos de auditoria
     @Override
     @Transactional
     public ProcedimientoDTO save(ProcedimientoDTO procedimientoDTO) {
 
+        // Se mapea el DTO a la entidad Procedimiento
         Procedimiento procedimiento = modelMapper.map(procedimientoDTO, Procedimiento.class);
 
+        // Se añaden los datos de auditoria con la fecha y usuario actual al procedimiento antes de guardarlo
         DatosAutoria datosAutoria = new DatosAutoria();
 
         datosAutoria.setFechaCreacion(LocalDate.now());
@@ -75,6 +82,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
         ProcedimientoDTO savedProcedimientoDTO = modelMapper.map(procedimientoRepository.save(procedimiento), ProcedimientoDTO.class);
 
+        // Se guardan los intervinientes del procedimiento en el cliente de Intervinientes
         for (IntervinienteDTO intervinienteDTO : procedimientoDTO.getIntervinientes()) {
 
             intervinienteDTO.setIdProcedimiento(savedProcedimientoDTO.getId());
@@ -82,7 +90,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
             intervinienteClientRest.saveInterviniente(intervinienteDTO);
 
         }
-
+        // Se obtienen los intervinientes guardados y se añaden al procedimiento DTO que se devuelve
         List<IntervinienteDTO> intervinientes = intervinienteClientRest.getIntervinientesByIdProcedimiento(procedimiento.getId());
 
         savedProcedimientoDTO.setIntervinientes(intervinientes);
@@ -91,12 +99,12 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
     }
 
+    //
     @Override
     @Transactional
     public ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO) {
 
         // Se obtienen los intervinientes anteriores y se comparan con los actuales
-
         List<IntervinienteDTO> intervinientesAnteriores = intervinienteClientRest.getIntervinientesByIdProcedimiento(procedimientoDTO.getId());
 
         List<IntervinienteDTO> intervinientesNuevos = procedimientoDTO.getIntervinientes();
@@ -107,6 +115,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
             if (index == -1) {
                 intervinienteClientRest.deleteInterviniente(intervinienteDTO.getId());
             } else {
+
                 // Se actualizan los intervinientes que ya estaban en la lista de intervinientes
                 IntervinienteDTO intervinienteActualizado = intervinientesNuevos.get(index);
                 intervinienteActualizado.setId(intervinienteDTO.getId());
@@ -120,7 +129,8 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
             }
         }
 
-        // Se añaden los intervinientes nuevos
+        // Se añaden los intervinientes nuevos que no estaban en la lista de intervinientes anteriores
+        // y se guardan en el cliente de Intervinientes con el id del procedimiento actual y los datos de auditoria
         procedimientoDTO.setIntervinientes(intervinientesNuevos);
 
         Procedimiento procedimiento = modelMapper.map(procedimientoDTO, Procedimiento.class);
@@ -145,6 +155,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
         }
 
+        // Se obtienen los intervinientes guardados y se añaden al procedimiento DTO que se devuelve
         List<IntervinienteDTO> intervinientes = intervinienteClientRest.getIntervinientesByIdProcedimiento(procedimiento.getId());
 
         savedProcedimientoDTO.setIntervinientes(intervinientes);
@@ -154,6 +165,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
     }
 
 
+    // Se eliminan un procedimiento por su id
     @Override
     @Transactional
     public void deleteById(Long id) {
@@ -162,6 +174,7 @@ public class ProcedimientoServiceImpl implements ProcedimientoService {
 
     }
 
+    // Se eliminan los intervinientes relacionados con un procedimiento por su id
     @Override
     @Transactional
     public void deleteRelatedIntervinientes(Long id) {

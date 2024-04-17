@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 
+// Clase que representa un Procedimiento con sus atributos y anotaciones de persistencia
 @Entity
 @Table(name = "procedimientos")
 @Data

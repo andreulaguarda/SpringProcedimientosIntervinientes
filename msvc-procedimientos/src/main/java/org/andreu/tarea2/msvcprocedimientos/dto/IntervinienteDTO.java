@@ -6,7 +6,7 @@ import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 
 import java.util.Objects;
 
-
+// Clase que representa un objeto de transferencia de datos de Interviniente con  atributos y anotaciones de validacion
 @Data
 public class IntervinienteDTO {
 

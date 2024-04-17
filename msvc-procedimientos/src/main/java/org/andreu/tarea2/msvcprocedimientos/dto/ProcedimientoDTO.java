@@ -9,6 +9,7 @@ import org.andreu.tarea2.msvcprocedimientos.model.DatosAutoria;
 
 import java.util.List;
 
+// Clase que representa un objeto de transferencia de datos de Procedimiento con  atributos y anotaciones de validacion
 @Data
 public class ProcedimientoDTO {
 
@@ -28,6 +29,7 @@ public class ProcedimientoDTO {
 
     private DatosAutoria datosAutoria;
 
+    // Valida que la lista de intervinientes no sea nula ni vacia
     @NotEmpty(message = "La lista de intervinientes no puede estar vacia")
     private List<IntervinienteDTO> intervinientes;
 

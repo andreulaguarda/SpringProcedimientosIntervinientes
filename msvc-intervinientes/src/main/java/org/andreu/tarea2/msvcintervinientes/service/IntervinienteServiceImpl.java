@@ -13,15 +13,19 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+// Se implementan los métodos de la interfaz IntervinienteService
 @Service
 public class IntervinienteServiceImpl implements IntervinienteService {
 
+    // Se inyecta el repositorio de Interviniente
     @Autowired
     private IntervinienteRepository intervinienteRepository;
 
+    // Se inyecta el modelMapper
     @Autowired
     private ModelMapper modelMapper;
 
+    // Devuelve una lista con todos los intervinientes de la base de datos mapeados a IntervinienteDTO
     @Override
     @Transactional(readOnly = true)
     public List<IntervinienteDTO> findAll() {
@@ -32,6 +36,7 @@ public class IntervinienteServiceImpl implements IntervinienteService {
 
     }
 
+    // Devuelve una lista con todos los intervinientes relacionados con un procedimiento mapeados a IntervinienteDTO
     @Override
     @Transactional(readOnly = true)
     public List<IntervinienteDTO> findbyIdProcedimiento(Long idProcedimiento) {
@@ -42,6 +47,7 @@ public class IntervinienteServiceImpl implements IntervinienteService {
 
     }
 
+    // Devuelve un interviniente por su id mapeado a IntervinienteDTO
     @Override
     @Transactional(readOnly = true)
     public Optional<IntervinienteDTO> findById(Long id) {
@@ -52,6 +58,8 @@ public class IntervinienteServiceImpl implements IntervinienteService {
 
     }
 
+    // Guarda un interviniente en la base de datos y lo devuelve mapeado a IntervinienteDTO
+    // Se añade la fecha de creación actual y el usuario que lo ha creado
     @Override
     @Transactional
     public IntervinienteDTO save(IntervinienteDTO intervinienteDTO) {
@@ -69,6 +77,8 @@ public class IntervinienteServiceImpl implements IntervinienteService {
         return modelMapper.map(intervinienteRepository.save(interviniente), IntervinienteDTO.class);
     }
 
+    // Actualiza un interviniente en la base de datos y lo devuelve mapeado a IntervinienteDTO
+    // Se añade la fecha de modificación actual y el usuario que lo ha modificado
     @Override
     @Transactional
     public IntervinienteDTO update(IntervinienteDTO intervinienteDTO) {
@@ -76,7 +86,6 @@ public class IntervinienteServiceImpl implements IntervinienteService {
         Interviniente interviniente = modelMapper.map(intervinienteDTO, Interviniente.class);
 
         Optional<Interviniente> existingInterviniente = intervinienteRepository.findById(interviniente.getId());
-
 
         if (existingInterviniente.isPresent()) {
 
@@ -92,6 +101,7 @@ public class IntervinienteServiceImpl implements IntervinienteService {
         return modelMapper.map(intervinienteRepository.save(interviniente), IntervinienteDTO.class);
     }
 
+    // Elimina un interviniente de la base de datos por su id
     @Override
     @Transactional
     public void deleteById(Long id) {

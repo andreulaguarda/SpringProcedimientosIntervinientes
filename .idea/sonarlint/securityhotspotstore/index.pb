@@ -204,7 +204,5 @@ dmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/dto/Inte
 bmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/model/DatosAutoriaTest.java,0\c\0cfe748e56c6fb349731b27978bbff4b4f15d9bb
 š
 jmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/model/entity/IntervinienteTest.java,e\4\e46c1b1a68f7b5bad77deb2bac6e276ab2e7cd39
-œ
-lmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/service/IntervinienteServiceTest.java,3\9\390bf54d2e4fd670dcc44b82fe6676713008d6da
  
 pmsvc-intervinientes/src/test/java/org/andreu/tarea2/msvcintervinientes/service/IntervinienteServiceImplTest.java,f\a\fa7ccf9c713848c874e793c5a40f83fa182f57a8
