@@ -3,7 +3,7 @@
 Este proyecto es una aplicación web de gestión de procedimientos e intervinientes. Permite a los usuarios crear, leer,
 actualizar y eliminar procedimientos, así como los intervinientes asociados a cada procedimiento.
 
-Consta de dos microservicios independientes, uno para procedimientos, cada uno con su propia base de datos en memoria H2.
+Consta de dos microservicios independientes, uno para procedimientos y otro para intervinientes, cada uno con su propia base de datos en memoria H2.
 
 Al tratarse de una relación de uno a muchos, un procedimiento puede tener varios intervinientes, pero un interviniente
 solo puede estar asociado a un procedimiento. Por este motivo, cada interviniente contiene una referencia a la id 
