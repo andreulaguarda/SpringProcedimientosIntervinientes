@@ -1,4 +1,4 @@
-# Tarea2 Feign - Procedimientos e Intervinientes
+# Proyecto Spring Procedimientos e Intervinientes
 
 Este proyecto es una aplicación web de gestión de procedimientos e intervinientes. Permite a los usuarios crear, leer,
 actualizar y eliminar procedimientos, así como los intervinientes asociados a cada procedimiento.
